@@ -173,6 +173,18 @@ ul{margin:0;padding:0;list-style:none}
 .cursor.clicked .flash{animation:flash .5s ease-out}
 @keyframes flash{0%{opacity:.7;transform:translate(-50%,-50%) scale(.4)}100%{opacity:0;transform:translate(-50%,-50%) scale(2)}}
 
+/* ============ KEYSTROKE OVERLAY (hero animation phase 0) ============ */
+.keystroke-overlay{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:rgba(8,8,12,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.keystroke-overlay.show{opacity:1;visibility:visible}
+.keystroke-keys{display:flex;align-items:center;gap:16px}
+.keystroke-keys .kk{display:inline-flex;align-items:center;justify-content:center;height:88px;min-width:88px;padding:0 24px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:30px;font-weight:700;color:#fff;background:linear-gradient(180deg,#1f1f27 0%,#131319 100%);border:1px solid rgba(255,255,255,.18);border-radius:18px;box-shadow:0 10px 0 0 rgba(0,0,0,.55),inset 0 2px 0 0 rgba(255,255,255,.10);transition:transform .15s cubic-bezier(.4,1.6,.5,1),box-shadow .15s ease,background .15s ease,border-color .15s ease}
+@media(min-width:640px){.keystroke-keys .kk{height:104px;min-width:104px;font-size:36px;border-radius:22px}}
+.keystroke-keys .plus{font-size:30px;font-weight:300;color:rgba(255,255,255,.5);transition:color .15s ease}
+.keystroke-keys .kk.pressed{transform:translateY(6px);background:linear-gradient(180deg,#2a2a35 0%,#1c1c24 100%);border-color:rgba(255,61,127,.6);box-shadow:0 4px 0 0 rgba(0,0,0,.55),inset 0 2px 0 0 rgba(255,255,255,.10),0 0 28px rgba(255,61,127,.45)}
+.keystroke-keys .plus.lit{color:#FF3D7F}
+.keystroke-label{font-size:13px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.55);transition:color .2s ease}
+.keystroke-label.lit{color:#fff}
+
 .tooltip{position:absolute;z-index:30;pointer-events:none;transform:translate(-50%,calc(-100% - 22px));opacity:0;transition:opacity .15s,transform .15s}
 .tooltip.show{opacity:1}
 .tooltip .box{display:flex;align-items:center;gap:8px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:#1A1A22;padding:6px 10px;box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
@@ -360,7 +372,7 @@ section{padding:80px 0}
 .footer-grid{display:grid;gap:40px}
 @media(min-width:768px){.footer-grid{grid-template-columns:repeat(12,1fr)}}
 .footer-brand{grid-column:1/-1}
-@media(min-width:768px){.footer-brand{grid-column:span 5}}
+@media(min-width:768px){.footer-brand{grid-column:span 6}}
 .footer-brand .brand-link{display:flex;align-items:center;gap:10px}
 .footer-brand .brand-link img{width:36px;height:36px;border-radius:10px}
 .footer-brand .brand-link .nm{font-size:18px;font-weight:600;letter-spacing:-.01em}
@@ -369,8 +381,10 @@ section{padding:80px 0}
 .footer-social a{display:flex;width:36px;height:36px;align-items:center;justify-content:center;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);transition:all .15s}
 .footer-social a:hover{color:#fff;background:rgba(255,255,255,.1)}
 .footer-social a svg{width:16px;height:16px}
-.footer-social .add-chrome{margin-left:4px;display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#fff;padding:8px 16px;font-size:12px;font-weight:600;color:#18181b;transition:background .15s}
-.footer-social .add-chrome:hover{background:#e4e4e7}
+.footer-social .add-chrome{margin-left:0;display:inline-flex;width:auto;height:auto;align-items:center;gap:8px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:#fff;padding:9px 18px;font-size:13px;font-weight:600;color:#18181b;transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s ease,background .15s}
+.footer-social .add-chrome:hover{background:#f4f4f5;transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.footer-social .add-chrome:active{transform:translateY(0)}
+.footer-social .add-chrome svg{width:16px;height:16px}
 .footer-col{grid-column:1/-1}
 @media(min-width:768px){.footer-col{grid-column:span 2}}
 .footer-col h4{margin:0;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.4)}
@@ -378,7 +392,7 @@ section{padding:80px 0}
 .footer-col a{font-size:14px;color:rgba(255,255,255,.7);transition:color .15s}
 .footer-col a:hover{color:#fff}
 .footer-shortcut{grid-column:1/-1}
-@media(min-width:768px){.footer-shortcut{grid-column:span 1}}
+@media(min-width:768px){.footer-shortcut{grid-column:span 2}}
 .footer-shortcut h4{margin:0;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.4)}
 .footer-shortcut .keys{margin-top:16px;display:flex;align-items:center;gap:6px}
 .footer-shortcut .keys .kbd{height:28px;min-width:28px;padding:0 8px;font-size:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:rgba(255,255,255,.9)}
@@ -497,6 +511,14 @@ main{flex:1}
                 <div class="tile"><div class="sw" style="background:#FFD23F"></div><div class="meta"><div class="l1"></div><div class="l2"></div></div></div>
                 <div class="tile"><div class="sw" style="background:#8338EC"></div><div class="meta"><div class="l1"></div><div class="l2"></div></div></div>
               </div>
+            </div>
+            <div class="keystroke-overlay" id="keystrokeOverlay">
+              <div class="keystroke-keys">
+                <span class="kk" id="kkAlt">Alt</span>
+                <span class="plus" id="kkPlus">+</span>
+                <span class="kk" id="kkQ">Q</span>
+              </div>
+              <div class="keystroke-label" id="kkLabel">Press to activate</div>
             </div>
             <div class="cursor" id="cursor">
               <div class="ring"></div>
@@ -636,7 +658,7 @@ main{flex:1}
       <p>Everything you might want to know before you install.</p>
     </div>
     <div class="faq-list reveal" id="faqList"></div>
-    <p class="faq-contact">Still have a question? <a href="mailto:hello@color-chooser.com">Get in touch</a>.</p>
+    <p class="faq-contact">Still have a question? <a href="mailto:roxappdev@gmail.com">Get in touch</a>.</p>
   </div>
 </section>
 
@@ -694,12 +716,6 @@ main{flex:1}
           <li><a href="#faq">Keyboard shortcuts</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="mailto:hello@color-chooser.com">hello@color-chooser.com</a></li>
-        </ul>
-      </div>
       <div class="footer-shortcut">
         <h4>Shortcut</h4>
         <div class="keys">
@@ -710,7 +726,7 @@ main{flex:1}
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 Color Chooser. All rights reserved.</p>
+      <p>&copy; 2026 Color Chooser. All rights reserved.</p>
       <div class="colors">
         <span style="background:#FF3D7F"></span>
         <span style="background:#FF9F1C"></span>
@@ -875,13 +891,21 @@ main{flex:1}
   });
 
   // ---- HERO ANIMATION LOOP ----
+  // Phases:
+  //  0 = show keystroke overlay (Alt + Q press close-up)
+  //  1 = overlay fades out, pipette appears at start position
+  //  2 = pipette moves to target tile, tooltip shows hex
+  //  3 = click — ring + flash
+  //  4 = toast "Copied #hex to clipboard", recent bar updates
   var TARGETS=[
     {x:"18%",y:"70%",hex:"#FF3D7F",name:"Sunset"},
     {x:"44%",y:"70%",hex:"#06D6A0",name:"Mint"},
     {x:"70%",y:"70%",hex:"#FFD23F",name:"Lemon"},
     {x:"92%",y:"70%",hex:"#8338EC",name:"Violet"}
   ];
-  var STEP_DURATIONS=[1100,600,450,1100,700]; // step 0..4
+  // duration spent in each phase (ms)
+  var PHASE_DURATIONS=[1700,500,950,450,1400];
+
   var cursor=document.getElementById("cursor");
   var tooltip=document.getElementById("tooltip");
   var toast=document.getElementById("toast");
@@ -890,8 +914,15 @@ main{flex:1}
   var ttName=document.getElementById("ttName");
   var toastHex=document.getElementById("toastHex");
   var recentList=document.getElementById("recentList");
+  var keystrokeOverlay=document.getElementById("keystrokeOverlay");
+  var kkAlt=document.getElementById("kkAlt");
+  var kkQ=document.getElementById("kkQ");
+  var kkPlus=document.getElementById("kkPlus");
+  var kkLabel=document.getElementById("kkLabel");
 
-  var step=0;
+  // start position for pipette (top-right area of the browser mock)
+  var START_POS={x:"85%",y:"25%"};
+
   var targetIdx=0;
   var recent=[TARGETS[3],TARGETS[2],TARGETS[1]];
 
@@ -910,30 +941,94 @@ main{flex:1}
     cursor.style.left=t.x;cursor.style.top=t.y;
     ttSw.style.background=t.hex;ttHex.textContent=t.hex;ttName.textContent=t.name;
   }
-  applyTarget(TARGETS[0]);
 
-  function tick(){
-    var next=(step+1)%5;
-    if(next===3){
-      // commit to recent
+  function resetKeystroke(){
+    kkAlt.classList.remove("pressed");
+    kkQ.classList.remove("pressed");
+    kkPlus.classList.remove("lit");
+    kkLabel.classList.remove("lit");
+    kkLabel.textContent="Press to activate";
+  }
+
+  function setPhase(p){
+    // Hide everything first
+    cursor.classList.remove("active","clicked");
+    tooltip.classList.remove("show");
+    toast.classList.remove("show");
+    // Do not toggle overlay here; controlled separately within phase 0
+
+    if(p===0){
+      // PHASE 0 — keystroke close-up
+      resetKeystroke();
+      keystrokeOverlay.classList.add("show");
+      // Sub-step timing inside phase 0:
+      //   0ms    : show overlay (Alt and Q idle, label "Press to activate")
+      //   350ms  : press Alt
+      //   650ms  : press Q (both held), label changes
+      //   1050ms : release both, label changes to "Eyedropper armed"
+      //   1400ms : start fade-out (handled by next phase)
+      setTimeout(function(){kkAlt.classList.add("pressed");kkPlus.classList.add("lit");},350);
+      setTimeout(function(){kkQ.classList.add("pressed");kkLabel.classList.add("lit");kkLabel.textContent="Eyedropper activating…";},650);
+      setTimeout(function(){
+        kkAlt.classList.remove("pressed");
+        kkQ.classList.remove("pressed");
+        kkPlus.classList.remove("lit");
+        kkLabel.textContent="Eyedropper armed";
+      },1050);
+    }else{
+      keystrokeOverlay.classList.remove("show");
+    }
+
+    if(p===1){
+      // PHASE 1 — pipette appears at start position
+      cursor.style.transition="none";
+      cursor.style.left=START_POS.x;cursor.style.top=START_POS.y;
+      // force reflow so the next transition takes effect from this position
+      void cursor.offsetWidth;
+      cursor.style.transition="";
+      // small delay then fade ring in
+      setTimeout(function(){cursor.classList.add("active");},80);
+    }
+
+    if(p===2){
+      // PHASE 2 — pipette moves to target, tooltip shows hex
+      var t=TARGETS[targetIdx];
+      applyTarget(t);
+      tooltip.classList.add("show");
+    }
+
+    if(p===3){
+      // PHASE 3 — click
+      cursor.classList.add("clicked");
+      tooltip.classList.add("show");
+    }
+
+    if(p===4){
+      // PHASE 4 — toast appears, recent bar updates
       var picked=TARGETS[targetIdx];
       recent=[picked].concat(recent.filter(function(x){return x.hex!==picked.hex})).slice(0,4);
       renderRecent();
       toastHex.textContent=picked.hex;
+      toast.classList.add("show");
+      // keep tooltip + click state visible during toast
+      cursor.classList.add("active","clicked");
+      tooltip.classList.add("show");
     }
-    if(next===0){
-      targetIdx=(targetIdx+1)%TARGETS.length;
-      applyTarget(TARGETS[targetIdx]);
-    }
-    // visual state per step
-    cursor.classList.toggle("active",(next===1||next===2));
-    cursor.classList.toggle("clicked",(next===2||next===3));
-    tooltip.classList.toggle("show",(next===1||next===2));
-    toast.classList.toggle("show",(next===3));
-    step=next;
-    setTimeout(tick,STEP_DURATIONS[next]);
   }
-  setTimeout(tick,STEP_DURATIONS[0]);
+
+  var phase=0;
+  setPhase(0);
+
+  function tick(){
+    phase=(phase+1)%5;
+    if(phase===0){
+      // advancing to next color when looping back to keystroke
+      targetIdx=(targetIdx+1)%TARGETS.length;
+    }
+    setPhase(phase);
+    setTimeout(tick,PHASE_DURATIONS[phase]);
+  }
+  setTimeout(tick,PHASE_DURATIONS[0]);
 })();
 </script>
 </body>
