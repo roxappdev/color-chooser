@@ -229,7 +229,7 @@ section{padding:80px 0}
 @media(min-width:640px){.section-head h2{font-size:2.25rem}}
 @media(min-width:1024px){.section-head h2{font-size:3rem}}
 .section-head h2::after{content:"";display:block;width:56px;height:3px;background:linear-gradient(90deg,var(--accent-1),var(--accent-4));margin:24px auto 0;border-radius:999px}
-.section-head p{margin:16px 0 0;font-size:18px;color:#52525b}
+.section-head p{margin:16px 0 0;font-size:18px;color:#3f3f46}
 
 /* hotkey showcase */
 .hotkey-section{background:#fff}
@@ -340,7 +340,7 @@ section{padding:80px 0}
 .faq-item.open .faq-a{max-height:400px;padding:0 12px 20px}
 @media(min-width:640px){.faq-item.open .faq-a{padding:0 20px 20px}}
 .faq-a p{margin:0;font-size:15px;color:#52525b;line-height:1.6}
-.faq-contact{margin-top:32px;text-align:center;font-size:14px;color:#71717a}
+.faq-contact{margin-top:32px;text-align:center;font-size:14px;color:#52525b}
 .faq-contact a{font-weight:500;color:#18181b;text-decoration:underline;text-underline-offset:4px}
 .faq-contact a:hover{color:var(--accent-1)}
 
@@ -376,7 +376,7 @@ section{padding:80px 0}
 .footer-brand .brand-link{display:flex;align-items:center;gap:10px}
 .footer-brand .brand-link img{width:36px;height:36px;border-radius:10px}
 .footer-brand .brand-link .nm{font-size:18px;font-weight:600;letter-spacing:-.01em}
-.footer-brand p{margin:16px 0 0;font-size:14px;color:rgba(255,255,255,.6);max-width:20rem;line-height:1.6}
+.footer-brand p{margin:16px 0 0;font-size:14px;color:rgba(255,255,255,.7);max-width:20rem;line-height:1.6}
 .footer-social{margin-top:20px;display:flex;align-items:center;gap:12px}
 .footer-social a{display:flex;width:36px;height:36px;align-items:center;justify-content:center;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.7);transition:all .15s}
 .footer-social a:hover{color:#fff;background:rgba(255,255,255,.1)}
@@ -387,13 +387,13 @@ section{padding:80px 0}
 .footer-social .add-chrome svg{width:16px;height:16px}
 .footer-col{grid-column:1/-1}
 @media(min-width:768px){.footer-col{grid-column:span 2}}
-.footer-col h4{margin:0;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.4)}
+.footer-col h3{margin:0;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.6)}
 .footer-col ul{margin:16px 0 0;display:flex;flex-direction:column;gap:10px}
 .footer-col a{font-size:14px;color:rgba(255,255,255,.7);transition:color .15s}
 .footer-col a:hover{color:#fff}
 .footer-shortcut{grid-column:1/-1}
 @media(min-width:768px){.footer-shortcut{grid-column:span 2}}
-.footer-shortcut h4{margin:0;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.4)}
+.footer-shortcut h3{margin:0;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.6)}
 .footer-shortcut .keys{margin-top:16px;display:flex;align-items:center;gap:6px}
 .footer-shortcut .keys .kbd{height:28px;min-width:28px;padding:0 8px;font-size:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:rgba(255,255,255,.9)}
 .footer-shortcut .keys .plus{color:rgba(255,255,255,.4);font-size:12px}
@@ -700,7 +700,7 @@ main{flex:1}
         </div>
       </div>
       <div class="footer-col">
-        <h4>Product</h4>
+        <h3>Product</h3>
         <ul>
           <li><a href="#how-it-works">How it works</a></li>
           <li><a href="#features">Features</a></li>
@@ -709,7 +709,7 @@ main{flex:1}
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Install</h4>
+        <h3>Install</h3>
         <ul>
           <li><a href="https://chromewebstore.google.com/detail/color-chooser-eyedropper/eblcinllfccmkinpgecmmjihhcjkbnlc?hl=en" target="_blank" rel="noopener noreferrer">Chrome Web Store</a></li>
           <li><a href="#how-it-works">Setup guide</a></li>
@@ -717,7 +717,7 @@ main{flex:1}
         </ul>
       </div>
       <div class="footer-shortcut">
-        <h4>Shortcut</h4>
+        <h3>Shortcut</h3>
         <div class="keys">
           <span class="kbd">Alt</span>
           <span class="plus">+</span>
@@ -983,8 +983,8 @@ main{flex:1}
       // PHASE 1 — pipette appears at start position
       cursor.style.transition="none";
       cursor.style.left=START_POS.x;cursor.style.top=START_POS.y;
-      // force reflow so the next transition takes effect from this position
-      void cursor.offsetWidth;
+      // force style recalc so the next transition takes effect from this position
+      getComputedStyle(cursor).transition;
       cursor.style.transition="";
       // small delay then fade ring in
       setTimeout(function(){cursor.classList.add("active");},80);
